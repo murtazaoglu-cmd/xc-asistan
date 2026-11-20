@@ -1,0 +1,37 @@
+{
+  "name": "xcontrol-yapi-backend",
+  "version": "1.20.0",
+  "description": "X Control Yapı - Teklif, Proje ve Finans Yönetim Sistemi API",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "worker": "node src/worker.js",
+    "dev": "nodemon src/server.js",
+    "migrate": "node src/migrate.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "pg": "^8.11.5",
+    "dotenv": "^16.4.5",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "bcryptjs": "^2.4.3",
+    "pdfkit": "^0.15.0",
+    "nodemailer": "^10.6.1",
+    "multer": "^2.5.0",
+    "axios": "^1.7.2",
+    "web-push": "^3.6.7",
+    "express-rate-limit": "^7.2.0",
+    "form-data": "^4.0.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "overrides": {
+    "minimatch": "^11.0.9"
+  }
+}

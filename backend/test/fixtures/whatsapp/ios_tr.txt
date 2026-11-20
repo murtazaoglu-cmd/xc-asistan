@@ -1,0 +1,7 @@
+‎[18.11.2026 09:12:03] Ayşe Test: ‎Mesajlar ve aramalar uçtan uca şifrelidir. Bu sohbetin dışındaki hiç kimse bunları okuyamaz.
+[18.11.2026 09:12:40] Ayşe Test: Merhaba, kapı ölçüsü 90x210 cm
+[18.11.2026 09:14:10] Usta Test: Yarın sabah 9'da gelirim
+‎[18.11.2026 09:15:00] Ayşe Test: ‎<attached: 00000012-PHOTO-2026-11-18-09-15-00.jpg>
+[19.11.2026 10:00:00] Ayşe Test: Perşembe evdeyim
+akşam 6'dan sonra müsaitim
+[19.11.2026 10:01:00] Usta Test: Tamam

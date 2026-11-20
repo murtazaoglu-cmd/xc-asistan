@@ -1,0 +1,14 @@
+node_modules/
+.env
+.env.*
+!.env.example
+*.jks
+*.keystore
+key.properties
+google-services.json
+GoogleService-Info.plist
+*.p8
+build/
+.dart_tool/
+*.log
+KEYSTORE-YEDEK/

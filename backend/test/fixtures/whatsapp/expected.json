@@ -1,0 +1,68 @@
+{
+  "_doc": "Elle yazılmış beklenenler. Mesaj: [gönderen, tür, yerel zaman, metin başlangıcı|null]. Tür: text|media|deleted. Sistem satırları mesaj sayılmaz.",
+  "files": {
+    "android_tr_24h.txt": { "platform": "android", "order": "dmy", "system": 2, "group": false, "messages": [
+      ["Ayşe Test","text","2026-11-18T09:12:00","Merhaba, pergola için fiyat"],
+      ["Usta Test","text","2026-11-18T09:14:00","Merhaba Ayşe Hanım"],
+      ["Ayşe Test","text","2026-11-18T09:15:00","Adresim Yalıkavak Mah."],
+      ["Ayşe Test","text","2026-11-18T09:16:00","Balkon ölçüsü 2,40 x 3,60 cm değil metre\ntamam yazarken hata oldu"],
+      ["Usta Test","text","2026-11-18T09:20:00","Yarın öğleden sonra 3'te"],
+      ["Ayşe Test","media","2026-11-18T09:25:00",null],
+      ["Ayşe Test","text","2026-11-18T09:26:00","Cuma günü evdeyim"],
+      ["Usta Test","text","2026-11-18T10:02:00","Teklifimiz 45.000 TL"],
+      ["Ayşe Test","deleted","2026-11-18T10:05:00",null],
+      ["Ayşe Test","text","2026-11-19T08:30:00","Numaram 0500"],
+      ["Ayşe Test","text","2026-11-19T12:00:00","Havale ile 15 bin TL"],
+      ["Ayşe Test","text","2026-11-20T07:50:00","Montajdan sonra kapı"],
+      ["Ayşe Test","media","2026-11-20T07:51:00",null]
+    ] },
+    "android_tr_12h.txt": { "platform": "android", "order": "dmy", "system": 0, "group": false, "messages": [
+      ["Ayşe Test","text","2026-11-18T09:12:00","Merhaba, fiyat"],
+      ["Usta Test","text","2026-11-18T15:05:00","Tabii, yarın 10:00'da"],
+      ["Ayşe Test","text","2026-11-18T23:59:00","Tamamdır"],
+      ["Ayşe Test","text","2026-11-19T12:10:00","Öğlen 12 de"]
+    ] },
+    "android_en_us.txt": { "platform": "android", "order": "mdy", "system": 1, "group": false, "messages": [
+      ["Ayse Test","text","2026-11-18T09:12:00","Hello, I need"],
+      ["Owner Test","text","2026-11-18T14:30:00","Sure, we can visit"],
+      ["Ayse Test","media","2026-11-19T00:05:00",null],
+      ["Ayse Test","deleted","2026-11-19T13:00:00",null],
+      ["Ayse Test","text","2026-11-20T23:45:00","ok"]
+    ] },
+    "android_en_gb.txt": { "platform": "android", "order": "dmy", "system": 0, "group": false, "messages": [
+      ["Ayse Test","text","2026-11-18T09:12:00","Good morning"],
+      ["Owner Test","text","2026-11-18T09:13:00","Good morning, 5/11 is fine?"],
+      ["Ayse Test","media","2026-11-19T14:40:00",null],
+      ["Ayse Test","text","2026-11-20T18:05:00","See you on 25/11"]
+    ] },
+    "ios_tr.txt": { "platform": "ios", "order": "dmy", "system": 1, "group": false, "messages": [
+      ["Ayşe Test","text","2026-11-18T09:12:40","Merhaba, kapı ölçüsü 90x210 cm"],
+      ["Usta Test","text","2026-11-18T09:14:10","Yarın sabah 9'da gelirim"],
+      ["Ayşe Test","media","2026-11-18T09:15:00",null],
+      ["Ayşe Test","text","2026-11-19T10:00:00","Perşembe evdeyim\nakşam 6'dan sonra müsaitim"],
+      ["Usta Test","text","2026-11-19T10:01:00","Tamam"]
+    ] },
+    "ios_en_us.txt": { "platform": "ios", "order": "mdy", "system": 0, "group": false, "messages": [
+      ["Ayse Test","text","2026-11-18T09:12:03","Hello"],
+      ["Owner Test","text","2026-11-18T14:30:10","I can come on Friday at 10"],
+      ["Ayse Test","media","2026-11-19T18:00:00",null],
+      ["Ayse Test","text","2026-11-20T00:00:00","Price is 12,500 TL right?"]
+    ] },
+    "group_chat.txt": { "platform": "android", "order": "dmy", "system": 0, "group": true, "messages": [
+      ["Ali Test","text","2026-11-18T09:12:00","Günaydın"],
+      ["Veli Test","text","2026-11-18T09:13:00","Günaydın"],
+      ["Usta Test","text","2026-11-18T09:14:00","Yarın 10'da şantiyedeyim"],
+      ["Ayşe Test","text","2026-11-18T09:15:00","Ben de geleceğim"]
+    ] },
+    "phone_sender.txt": { "platform": "android", "order": "dmy", "system": 0, "group": false, "messages": [
+      ["+90 500 000 00 02","text","2026-11-18T09:12:00","Merhaba, keşif için"],
+      ["Usta Test","text","2026-11-18T09:13:00","Yarın 11:30'da"],
+      ["+90 500 000 00 02","text","2026-11-18T09:14:00","Tamam bekliyorum"]
+    ] },
+    "dup_same_minute.txt": { "platform": "android", "order": "dmy", "system": 0, "group": false, "messages": [
+      ["Ayşe Test","text","2026-11-18T09:12:00","Tamam"],
+      ["Ayşe Test","text","2026-11-18T09:12:00","Tamam"],
+      ["Usta Test","text","2026-11-18T09:12:00","Tamam"]
+    ] }
+  }
+}
