@@ -1,0 +1,24 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  errors:
+    # Sıfır uyarı hedefi: bunlar hata sayılır.
+    unused_import: error
+    unused_local_variable: error
+    dead_code: error
+  exclude:
+    - build/**
+    - android/**
+    - ios/**
+    - web/**
+
+linter:
+  rules:
+    prefer_single_quotes: true
+    avoid_print: true
+    unawaited_futures: false
+    always_declare_return_types: true
+    # Biçimsel kurallar (kısa tek satırlık if'ler serbest):
+    curly_braces_in_flow_control_structures: false
+    use_null_aware_elements: false
+    prefer_initializing_formals: false

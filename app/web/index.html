@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <!-- `flutter build web --base-href /alt-yol/` bu değeri değiştirir (kök yolda "/" kalır). -->
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta name="description" content="XC Asistan Yönetim Paneli: teklif, iş, müşteri, randevu ve para takibini yapan akıllı işletme asistanı.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="color-scheme" content="light dark">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="XC Asistan">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#3B82F6">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0B1324">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="manifest" href="manifest.json">
+
+  <title>XC Asistan · Yönetim Paneli</title>
+
+  <!-- Açılış ekranı: Flutter ilk kareyi çizene kadar görünür (boot.js kaldırır). Satır içi betik YOK (CSP). -->
+  <style>
+    html, body { margin: 0; height: 100%; background: #F5F7FB; }
+    @media (prefers-color-scheme: dark) { html, body { background: #0B1324; } }
+    #boot {
+      position: fixed; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 18px;
+      font: 600 16px Inter, system-ui, -apple-system, "Segoe UI", sans-serif; color: #172033;
+    }
+    @media (prefers-color-scheme: dark) { #boot { color: #E7EDF7; } }
+    #boot .logo { width: 64px; height: 64px; border-radius: 18px; background: linear-gradient(145deg,#60a5fa,#2563eb);
+      display: grid; place-items: center; color: #fff; font-size: 34px; font-weight: 800; box-shadow: 0 8px 24px #3b82f640; }
+    #boot .bar { width: 120px; height: 4px; border-radius: 4px; background: #dbe4f3; overflow: hidden; }
+    #boot .bar::after { content: ""; display: block; width: 40%; height: 100%; background: #3B82F6; border-radius: 4px;
+      animation: xcslide 1.1s ease-in-out infinite; }
+    @keyframes xcslide { 0% { transform: translateX(-100%); } 100% { transform: translateX(300%); } }
+    @media (prefers-reduced-motion: reduce) { #boot .bar::after { animation: none; width: 100%; } }
+  </style>
+</head>
+<body>
+  <div id="boot" role="status" aria-live="polite">
+    <div class="logo" aria-hidden="true">X</div>
+    <div>XC Asistan yükleniyor…</div>
+    <div class="bar" aria-hidden="true"></div>
+    <noscript>Bu uygulama JavaScript gerektirir. Lütfen tarayıcınızda JavaScript'i etkinleştirin.</noscript>
+  </div>
+  <script src="boot.js"></script>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>

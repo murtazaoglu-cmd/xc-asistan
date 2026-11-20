@@ -1,0 +1,41 @@
+{
+  "name": "XC Asistan Yönetim Paneli",
+  "short_name": "XC Asistan",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#F5F7FB",
+  "theme_color": "#3B82F6",
+  "description": "XC Asistan: teklif, iş, müşteri ve para takibini yapan akıllı işletme asistanı.",
+  "orientation": "any",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "icons/Icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/Icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/Icon-maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icons/Icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "lang": "tr",
+  "scope": ".",
+  "categories": [
+    "business",
+    "productivity"
+  ]
+}

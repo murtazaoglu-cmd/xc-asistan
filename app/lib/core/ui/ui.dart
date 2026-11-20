@@ -1,0 +1,24 @@
+// Ortak widget kataloğu: ekranlar yalnızca bunu içe aktarır.
+export 'address_actions.dart';
+export 'app_scaffold.dart';
+export 'breakpoints.dart';
+export 'bottom_save_bar.dart';
+export 'confirm_dialog.dart';
+export 'contact_launcher.dart';
+export 'date_text.dart';
+export 'feature_placeholder.dart';
+export 'money_text.dart';
+export 'offline_banner.dart';
+export 'phone_actions.dart';
+export 'pull_to_refresh.dart';
+export 'section_card.dart';
+export 'states.dart';
+export 'status_chip.dart';
+export 'ui_providers.dart';
+export 'undo_snackbar.dart';
+export 'assistant_cards.dart';
+export 'stat_tile.dart';
+export 'adaptive.dart';
+export 'data_table_view.dart';
+export 'focus_ring.dart';
+export 'shell_controller.dart';

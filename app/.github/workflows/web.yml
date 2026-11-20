@@ -1,0 +1,94 @@
+# XC Asistan WEB PANELİ: derleme + artifact (TASLAK).
+# Dağıtım adımı (deploy) VARSAYILAN KAPALIDIR: depoda `WEB_DEPLOY_ENABLED=true` değişkeni ve aşağıdaki
+# sırlar (secrets) tanımlanmadıkça çalışmaz. Önce `docs/WEB-DEPLOY.md` içindeki elle dağıtımı deneyin.
+name: web
+
+on:
+  push:
+    branches: [main]
+    paths: ['lib/**', 'web/**', 'pubspec.yaml', 'pubspec.lock', 'assets/**', '.github/workflows/web.yml']
+  pull_request:
+    paths: ['lib/**', 'web/**', 'pubspec.yaml', 'test/**']
+  workflow_dispatch:
+    inputs:
+      api_base_url:
+        description: 'API tabanı (varsayılan canlı API)'
+        default: 'https://api.controlx.com.tr/api'
+        required: false
+
+env:
+  API_BASE_URL: ${{ github.event.inputs.api_base_url || 'https://api.controlx.com.tr/api' }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable          # Uygulama Flutter 3.50 / Dart 3.14 ile geliştirildi: sürüm sabitlemek için flutter-version: '3.50.x'
+          cache: true
+
+      - run: flutter pub get
+      - run: flutter analyze
+      - name: Web ile ilgili testler
+        run: flutter test test/core test/web test/screens
+
+      # Gerçek API sürümü. CDN'e bağımlılık yok (CanvasKit paketin içinde).
+      - name: Derle (gerçek API)
+        run: >
+          flutter build web --release --no-web-resources-cdn
+          --dart-define=API_BASE_URL=$API_BASE_URL
+          --pwa-strategy=none
+
+      # DEMO sürümü (backend'siz, sahte veriyle). Müşteriye göstermek içindir; canlıya KONMAZ.
+      - name: Derle (DEMO)
+        run: >
+          flutter build web --release --no-web-resources-cdn
+          --dart-define=DEMO=true --pwa-strategy=none -o build/web-demo
+
+      - name: Arşivle
+        run: |
+          (cd build/web && zip -qr ../../xc-asistan-web.zip .)
+          (cd build/web-demo && zip -qr ../../xc-asistan-web-demo.zip .)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: xc-asistan-web
+          path: |
+            xc-asistan-web.zip
+            xc-asistan-web-demo.zip
+          retention-days: 30
+
+  # --- DAĞITIM (kapalı örnek) -------------------------------------------------------------------
+  # Etkinleştirmek için: Settings → Variables → WEB_DEPLOY_ENABLED=true ve Secrets:
+  #   WEB_SSH_KEY (özel anahtar), WEB_SSH_KNOWN_HOSTS (ssh-keyscan çıktısı), WEB_HOST, WEB_USER
+  # Ortam (environment) "production" için elle onay (required reviewers) tanımlamanız önerilir.
+  deploy:
+    needs: build
+    if: ${{ vars.WEB_DEPLOY_ENABLED == 'true' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: xc-asistan-web
+      - name: Sunucuya kopyala ve geçir
+        env:
+          SSH_KEY: ${{ secrets.WEB_SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.WEB_SSH_KNOWN_HOSTS }}
+          HOST: ${{ secrets.WEB_HOST }}
+          USER_NAME: ${{ secrets.WEB_USER }}
+        run: |
+          set -euo pipefail
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_deploy && chmod 600 ~/.ssh/id_deploy
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          REL=$(date +%Y%m%d-%H%M%S)
+          unzip -q xc-asistan-web.zip -d "rel-$REL"
+          ssh -i ~/.ssh/id_deploy "$USER_NAME@$HOST" "mkdir -p /var/www/controlx/panel-web/releases"
+          rsync -az --delete -e "ssh -i ~/.ssh/id_deploy" "rel-$REL/" "$USER_NAME@$HOST:/var/www/controlx/panel-web/releases/$REL/"
+          # Atomik geçiş: sembolik bağı değiştir; eskisi releases/ altında kalır (geri alma = bağı eski sürüme çevir).
+          ssh -i ~/.ssh/id_deploy "$USER_NAME@$HOST" "ln -sfn /var/www/controlx/panel-web/releases/$REL /var/www/controlx/panel-web/current && ls -1dt /var/www/controlx/panel-web/releases/* | tail -n +6 | xargs -r rm -rf"
