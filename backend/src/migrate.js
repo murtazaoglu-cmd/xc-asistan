@@ -31,6 +31,13 @@ async function run() {
     const hasUsers = (await db.query("SELECT to_regclass('public.users') AS t")).rows[0].t;
     if (hasUsers) {
       console.log(`Mevcut kurulum algılandı — v${BASELINE_THROUGH}'e kadar olan şema dosyaları uygulanmış kabul ediliyor.`);
+      // Eski kurulumlarda elle uygulanması gereken numarasız yama atlanmış olabilir
+      // (push_subscriptions). Yama IF NOT EXISTS ile idempotenttir; v14 bu tabloya ihtiyaç duyar.
+      const patchFile = path.join(__dirname, "schema_patch_push.sql");
+      if (fs.existsSync(patchFile)) {
+        await db.query(fs.readFileSync(patchFile, "utf8"));
+        console.log("✔ schema_patch_push.sql (push_subscriptions yaması) uygulandı");
+      }
       for (const m of migrations.filter((x) => x.n <= BASELINE_THROUGH)) {
         await db.query("INSERT INTO schema_migrations (name) VALUES ($1) ON CONFLICT DO NOTHING", [m.file]);
         applied.add(m.file);
